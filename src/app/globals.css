@@ -1,26 +1,229 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+  color-scheme: light;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Superficies */
+  --background: #f5f8f7;
+  --foreground: #0e2e38;
+  --surface: #ffffff;
+  --surface-muted: #eaf1ef;
+  --border: #d7e3e1;
+  --muted-foreground: #4e6763;
+
+  /* Marca (Maritime Technology) */
+  --primary: #14657a;
+  --primary-foreground: #f3fafb;
+  --accent: #12a89d;
+  --accent-foreground: #012f2b;
+  --ring: #0d8a82;
+
+  /* Estado */
+  --success: #1e7a4e;
+  --success-foreground: #f0fbf4;
+  --warning: #a0551f;
+  --warning-foreground: #fff6ec;
+  --danger: #c9402f;
+  --danger-foreground: #fff3f2;
+  --info: #2e8ea0;
+  --info-foreground: #edf7f9;
+
+  /* Tonos legibles sobre superficies claras (WCAG AA) */
+  --accent-strong: #0a6e68;
+  --info-strong: #1f6f80;
+  --danger-strong: #b23627;
+
+  /* Finanzas (antícipos y devoluciones) */
+  --financial: #b05a24;
+  --financial-foreground: #fff6ec;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    color-scheme: dark;
+
+    --background: #07191f;
+    --foreground: #e4f0f1;
+    --surface: #0e252d;
+    --surface-muted: #0b1f26;
+    --border: #1d3a42;
+    --muted-foreground: #9fbabe;
+
+    --primary: #3ea8bc;
+    --primary-foreground: #032733;
+    --accent: #2fc4b4;
+    --accent-foreground: #032e2a;
+    --ring: #2fc4b4;
+
+    --success: #46c97f;
+    --success-foreground: #042b18;
+    --warning: #f4a866;
+    --warning-foreground: #382310;
+    --danger: #f27e72;
+    --danger-foreground: #3a0e0b;
+    --info: #63b7c8;
+    --info-foreground: #072830;
+
+    --financial: #f4a866;
+    --financial-foreground: #382310;
+
+    /* En oscuro los tonos base ya cumplen AA como texto */
+    --accent-strong: #2fc4b4;
+    --info-strong: #63b7c8;
+    --danger-strong: #f27e72;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@theme inline {
+  /* Superficies y semántica */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-border: var(--border);
+  --color-muted-foreground: var(--muted-foreground);
+
+  /* Marca */
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent-strong: var(--accent-strong);
+  --color-ring: var(--ring);
+
+  /* Estado */
+  --color-success: var(--success);
+  --color-success-foreground: var(--success-foreground);
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-danger: var(--danger);
+  --color-danger-foreground: var(--danger-foreground);
+  --color-info: var(--info);
+  --color-info-foreground: var(--info-foreground);
+
+  /* Tonos legibles (texto) */
+  --color-info-strong: var(--info-strong);
+  --color-danger-strong: var(--danger-strong);
+
+  --color-financial: var(--financial);
+  --color-financial-foreground: var(--financial-foreground);
+
+  /* Azul océano → azul marino */
+  --color-ocean-50: #eef7f8;
+  --color-ocean-100: #d8edf0;
+  --color-ocean-200: #b5dee4;
+  --color-ocean-300: #82c6d0;
+  --color-ocean-400: #4fabb8;
+  --color-ocean-500: #2e8ea0;
+  --color-ocean-600: #1a7588;
+  --color-ocean-700: #14657a;
+  --color-ocean-800: #0e4756;
+  --color-ocean-900: #0a3644;
+  --color-ocean-950: #092e3b;
+
+  /* Turquesa technológica */
+  --color-lagoon-50: #eafcf8;
+  --color-lagoon-100: #ccf7ef;
+  --color-lagoon-200: #9beee0;
+  --color-lagoon-300: #5fdcc9;
+  --color-lagoon-400: #2fc4b4;
+  --color-lagoon-500: #12a89d;
+  --color-lagoon-600: #0d8a82;
+  --color-lagoon-700: #0a6e68;
+  --color-lagoon-800: #07544f;
+  --color-lagoon-900: #043b38;
+
+  /* Coral acento cálido */
+  --color-coral-50: #fef6ee;
+  --color-coral-100: #fde9d6;
+  --color-coral-200: #fbd5ae;
+  --color-coral-300: #f8b87f;
+  --color-coral-400: #f49a58;
+  --color-coral-500: #e07f38;
+  --color-coral-600: #c76a2a;
+  --color-coral-700: #a0551f;
+  --color-coral-800: #7a411a;
+  --color-coral-900: #543016;
+
+  /* Tipografía */
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-sora), var(--font-dm-sans), ui-sans-serif,
+    system-ui, sans-serif;
+  --font-mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas,
+    "Liberation Mono", monospace;
+}
+
+@theme {
+  /* Sombras sutiles */
+  --shadow-soft: 0 1px 2px rgb(14 46 56 / 0.04),
+    0 12px 32px -24px rgb(14 46 56 / 0.35);
+  --shadow-lift: 0 2px 4px rgb(14 46 56 / 0.05),
+    0 20px 44px -20px rgb(14 46 56 / 0.4);
+
+  /* Animaciones de entrada moderadas */
+  --animate-fade-up: fade-up 0.5s ease-out both;
+  --animate-fade-in: fade-in 0.4s ease-out both;
+
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(14px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: color-mix(in srgb, var(--accent) 25%, transparent);
+    color: var(--color-foreground);
+  }
+}
+
+@layer components {
+  .label {
+    @apply text-xs font-semibold uppercase tracking-wider text-muted-foreground;
+  }
+
+  .numeric {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
